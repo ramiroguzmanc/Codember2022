@@ -18,15 +18,15 @@ function isAValidNumber(number: number):boolean{
     return numberHaveIncrementalDigits(splittedNumber) && fiveNumberAtLeastTwoTimes
 }
 
-const validPasswords = []
-
 const minRangeOfNumbers = 11098
 const maxRangeOfNumbers = 98123
 
-for(let i = minRangeOfNumbers; i <= maxRangeOfNumbers; i++){
-    if(isAValidNumber(i)){
-        validPasswords.push(i)
-    }
-}
+// Creo un array del tamaño de la diferencia entre el rango de los números
+let rangeOfNumbers = Array((maxRangeOfNumbers + 1) - minRangeOfNumbers)
+
+// Relleno el array desde el valor mínimo especificado hasta el máximo
+rangeOfNumbers = Array.from(rangeOfNumbers, (_, indx) => minRangeOfNumbers + indx)
+
+const validPasswords = rangeOfNumbers.filter((number) => isAValidNumber(number))
 
 console.log(validPasswords.length, validPasswords[55]);
